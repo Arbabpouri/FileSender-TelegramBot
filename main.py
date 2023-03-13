@@ -3,15 +3,16 @@ from os import path
 from time import sleep
 import aiocron
 from telethon.tl.types import PeerUser
-from telethon.tl.functions.messages import SendMultiMediaRequest
-# SendMultiMediaRequest()
+import logging
+logging.basicConfig(filename="log.txt", filemode="a",format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 config = {
     "apiID" : 271091,
     "apiHash" : "c67b07ae46783460c54aa781f0ecf09d",
     "botToken" : "5701813060:AAEuNLXRknCSUhoZqGktpnjmyCAuqet77No",
-    "directory" : r"../../etc/x-ui/x-ui.db",
+    "directory" : r"../../../etc/x-ui/x-ui.db",
     "adminUserId" : 931213973, # int
     "timeSleep" : 1 # min
 }
@@ -41,7 +42,10 @@ client.start(bot_token= config["botToken"])
 @aiocron.crontab("*/{} * * * *".format(config["timeSleep"]))
 async def main():
     CheckFile().check_file()
-    await client.send_file(PeerUser(config["adminUserId"]), config["directory"], caption= 'تقدیم با عشق')
-
+    try:
+        await client.send_file(PeerUser(config["adminUserId"]), config["directory"], caption= 'تقدیم با عشق')
+    except Exception as ex:
+        print(f"Matn Error : {ex} \n\n ehtemalan admin bot ro start nakarde ya blockesh karde chon bot nemitone behesh payam bede")
+    
 print("bot is online")
 client.run_until_disconnected()
