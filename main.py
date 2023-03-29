@@ -9,12 +9,12 @@ logger = logging.getLogger(__name__)
 
 
 config = {
-    "apiID" : 271091,
-    "apiHash" : "c67b07ae46783460c54aa781f0ecf09d",
-    "botToken" : "5701813060:AAEuNLXRknCSUhoZqGktpnjmyCAuqet77No",
-    "directory" : r"../../../etc/x-ui/x-ui.db",
-    "adminUserId" : 931213973, # int
-    "timeSleep" : 1 # min
+    "apiID" : ...,
+    "apiHash" : "",
+    "botToken" : "",
+    "directory" : r"etc/x-ui/x-ui.db", #The path of the file you want to send
+    "adminUserId" : ..., # int
+    "timeSleep" : 60 # min
 }
 class CheckFile:
     def __init__(self) -> None:
@@ -43,9 +43,9 @@ client.start(bot_token= config["botToken"])
 async def main():
     CheckFile().check_file()
     try:
-        await client.send_file(PeerUser(config["adminUserId"]), config["directory"], caption= 'تقدیم با عشق')
+        await client.send_file(PeerUser(config["adminUserId"]), config["directory"], caption= 'with love')
     except Exception as ex:
-        print(f"Matn Error : {ex} \n\n ehtemalan admin bot ro start nakarde ya blockesh karde chon bot nemitone behesh payam bede")
+        print(ex)
     
 print("bot is online")
 client.run_until_disconnected()
