@@ -1,4 +1,4 @@
-# Send file from vps/host to admin by Telegram Bot :sunglasses:
+# Simple bot for : Send file from vps/host to admin by Telegram Bot :sunglasses:
 **please give me star:star:**
 
 
