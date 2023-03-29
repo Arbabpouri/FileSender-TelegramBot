@@ -1,0 +1,2 @@
+aiocron==1.8
+Telethon==1.27.0
